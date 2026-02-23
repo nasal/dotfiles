@@ -1,0 +1,10 @@
+[commit]
+    gpgsign = true
+[user]
+    email = <>
+    name = <>
+    signingkey = ''
+[gpg]
+    program = gpg
+[init]
+    defaultBranch = main
