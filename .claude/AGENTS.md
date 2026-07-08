@@ -16,7 +16,7 @@ A per-project `AGENTS.md`/`CLAUDE.md` always overrides this file.
 ## Git
 
 - Commit completed work freely. Messages are plain descriptive one-liners — no `feat:`/`fix:` prefixes.
-- **Never push without being asked.** Never force-push. Never rewrite history on shared branches.
+- **Pushing**: in an autonomous permission mode (auto / bypassPermissions) push completed, committed work without asking; in any other mode, never push unprompted. Never force-push. Never rewrite history on shared branches. A push is never a deploy approval — production guardrails below still apply.
 - Never use `--no-verify` or skip hooks. If a hook fails, fix the cause, not the messenger.
 
 ## Guardrails — always ask first
