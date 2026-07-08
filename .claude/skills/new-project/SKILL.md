@@ -16,7 +16,7 @@ Target directory: `~/spaghetti/<name>` unless told otherwise.
 
 Blueprint is `~/spaghetti/react-starter` — copy it, don't recreate it:
 
-1. `cp -r ~/spaghetti/react-starter ~/spaghetti/<name>` then `rm -rf .git node_modules`.
+1. `cp -r ~/spaghetti/react-starter ~/spaghetti/<name>` then `rm -rf .git node_modules`. If the local copy doesn't exist (new machine), `git clone --depth 1 git@github.com:spaghettisi/react-starter.git <name>` instead.
 2. Rename: `package.json` name, `index.html` title, README heading.
 3. **Scrub starter artifacts**:
    - Remove stale `biome-ignore` comments (repo uses oxlint/oxfmt now); re-add as `oxlint-disable-next-line` only if the lint error is real.
