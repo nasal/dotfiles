@@ -18,17 +18,13 @@ Blueprint is `~/spaghetti/react-starter` — copy it, don't recreate it:
 
 1. `cp -r ~/spaghetti/react-starter ~/spaghetti/<name>` then `rm -rf .git node_modules`. If the local copy doesn't exist (new machine), `git clone --depth 1 git@github.com:spaghettisi/react-starter.git <name>` instead.
 2. Rename: `package.json` name, `index.html` title, README heading.
-3. **Scrub starter artifacts**:
-   - Remove stale `biome-ignore` comments (repo uses oxlint/oxfmt now); re-add as `oxlint-disable-next-line` only if the lint error is real.
-   - In `pocketbase/` hooks: replace hardcoded Stripe `price_...` IDs with env vars — never leave them in a fresh project.
-4. **Backend choice**:
+3. **Backend choice**:
    - `none` → delete `pocketbase/` dir.
-   - `pocketbase` → keep `pocketbase/`, document setup in README.
+   - `pocketbase` → keep `pocketbase/`, document setup in README (Stripe/captcha hooks are configured via server-side `STRIPE_*` env vars — see `.env.example`).
    - `hono` → delete `pocketbase/`, scaffold `server/` per the "Hono API" section below (same repo, separate package).
-5. **Add tests** (starter ships without a runner): `bun add -d vitest @testing-library/react @testing-library/jest-dom jsdom`, add `"test": "vitest run"` + `"test:watch": "vitest"` scripts, a `vitest.config.ts` (jsdom, `@` alias matching vite), and one real smoke test (render a route, assert content) so the suite is green from commit one.
-6. Write a thin `AGENTS.md` from `~/dotfiles/.claude/templates/AGENTS.project.md` (fill in name, stack, commands, deploy target), then `ln -s AGENTS.md CLAUDE.md`.
-7. `bun install`, then run `/check` — everything must be green.
-8. `git init -b main`, initial commit.
+4. Replace the starter's `AGENTS.md` with a thin project one from `~/dotfiles/.claude/templates/AGENTS.project.md` (fill in name, stack, commands, deploy target; carry over the starter's still-relevant Gotchas). Keep the `CLAUDE.md` symlink.
+5. `bun install`, then run `/check` — the starter ships with Vitest + RTL wired, so the suite must be green out of the box.
+6. `git init -b main`, initial commit.
 
 ## Expo mobile app
 
