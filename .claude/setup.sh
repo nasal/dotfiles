@@ -26,4 +26,7 @@ link "$DOT/rules"     "$HOME/.claude/rules"
 link "$DOT/AGENTS.md" "$HOME/.codex/AGENTS.md"
 link "$DOT/AGENTS.md" "$HOME/.gemini/GEMINI.md"
 
+command -v agent-browser >/dev/null ||
+  echo "note: browser automation missing — run: bun add -g agent-browser && bun pm -g trust agent-browser && agent-browser install"
+
 echo "done."
