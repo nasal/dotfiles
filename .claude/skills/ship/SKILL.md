@@ -8,6 +8,7 @@ description: Test → commit → deploy pipeline. Runs the /check gate, commits 
 ## Pipeline
 
 1. **Gate**: run `/check`. Red → fix or stop. Never ship red.
+   For production-bound or risky changes, also spawn the `code-reviewer` agent on the diff and resolve anything severe before continuing.
 
 2. **Commit**: if the working tree is dirty, commit with a plain descriptive one-liner. Don't push unless the deploy target requires it (git-based deploys) — and say so when you do.
 
