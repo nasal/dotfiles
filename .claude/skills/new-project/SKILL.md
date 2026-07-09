@@ -28,7 +28,7 @@ Blueprint is `~/spaghetti/react-starter` — copy it, don't recreate it:
 
 ## Expo mobile app
 
-No starter repo yet — scaffold fresh, apply house conventions:
+No starter repo yet — scaffold fresh, apply house conventions. Load the `react-native-best-practices` skill first (Software Mansion's, vendored globally) and follow it for anything touching animations, gestures, or native modules:
 
 1. `bunx create-expo-app@latest <name>` (default template, TypeScript), Expo Router.
 2. Add NativeWind (Tailwind for RN) — check Context7 for current setup steps.
