@@ -1,0 +1,4 @@
+interface:
+  display_name: "Database Change"
+  short_description: "Plan and verify safe database changes"
+  default_prompt: "Use $db-change to plan and execute this database change with the correct safety boundary."

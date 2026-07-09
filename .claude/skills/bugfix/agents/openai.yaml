@@ -1,0 +1,4 @@
+interface:
+  display_name: "Bugfix"
+  short_description: "Reproduce and fix bugs with regression tests"
+  default_prompt: "Use $bugfix to reproduce this failure, add a regression test, and make the smallest correct fix."

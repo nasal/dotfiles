@@ -1,0 +1,4 @@
+interface:
+  display_name: "Deploy with EAS"
+  short_description: "Build and submit Expo apps safely"
+  default_prompt: "Use $deploy-eas to build or submit this Expo app with the correct environment checks."
