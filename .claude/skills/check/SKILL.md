@@ -1,9 +1,9 @@
 ---
 name: check
-description: The "done" gate — run typecheck, lint, tests, and build for this repo and get everything green. Use before every commit, at the end of every task, and whenever asked "is this done?". Named /check to avoid colliding with the built-in /verify.
+description: The "done" gate — run typecheck, lint, tests, and build for this repo and get everything green. Use before every commit, at the end of every task, and whenever asked "is this done?".
 ---
 
-# /check — verify gate
+# Check — verify gate
 
 Nothing is "done" until this passes. No exceptions, no "the failures are unrelated" (if they're unrelated, say so explicitly and ask — don't silently skip).
 
@@ -24,6 +24,6 @@ Nothing is "done" until this passes. No exceptions, no "the failures are unrelat
    - Never weaken, skip, or delete a test to make it pass.
    - Never add lint-ignore comments or loosen configs to silence errors.
    - Never `--no-verify`.
-   - If a failure pre-exists your change (verify with `git stash` if unsure), report it — it's the user's call, not yours.
+   - If a failure may pre-exist your change, verify against `HEAD` in a temporary worktree or another non-destructive baseline. Never stash, reset, or overwrite the user's working tree without permission.
 
 5. **Report** one line per gate: pass/fail, and what you fixed.

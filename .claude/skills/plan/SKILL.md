@@ -1,9 +1,9 @@
 ---
 name: plan
-description: Turn docs/spec.md (or a described feature) into docs/plan.md — small, ordered, independently verifiable steps with test-first notes. Use after /brainstorm or before any multi-day build. Feeds /do-plan.
+description: Turn docs/spec.md (or a described feature) into docs/plan.md — small, ordered, independently verifiable steps with test-first notes. Use after brainstorming or before any multi-day build. Feeds the do-plan workflow.
 ---
 
-# /plan — spec → executable plan
+# Plan — spec → executable plan
 
 ## Input
 
@@ -12,7 +12,7 @@ Read `docs/spec.md` if it exists; otherwise ask what we're planning (or take the
 ## Shape of a good step
 
 - Small: one sitting, one commit, one reviewable diff.
-- Independently verifiable: ends with the repo green (`/check`) and something demonstrable.
+- Independently verifiable: ends with the repo's full verify gate green and something demonstrable.
 - Ordered so every step builds on committed, working code — no step depends on a future step.
 - Test-first where there's logic: the step says what test proves it works.
 - No orphans: if a step builds something, a later step wires it in. Prefer walking-skeleton order (thin end-to-end slice first, then flesh out) over layer-by-layer.
@@ -34,4 +34,4 @@ Source: docs/spec.md (<date>)
 
 Keep it to what's real: 5–15 steps for most features. If it needs 30, the spec is too big — say so and propose a smaller v1.
 
-Finish by summarizing the plan and pointing at `/do-plan`. Don't start executing.
+Finish by summarizing the plan and pointing at the `do-plan` workflow. Don't start executing.

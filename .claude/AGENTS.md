@@ -11,19 +11,19 @@ A per-project `AGENTS.md`/`CLAUDE.md` always overrides this file.
 - Never rewrite a working system without explicit permission.
 - Reuse before reinventing: check the repo's existing components, utils, and installed packages first.
 - TDD-ish: new logic gets a test; bugfixes get a failing regression test *first*. Test output stays pristine — no skipped tests, no ignored warnings.
-- "Done" means the verify gate passes: run `/check` (typecheck + lint + tests + build) before calling any task finished.
+- "Done" means the repo's verify gate passes (typecheck + lint + tests + build). Prefer its documented `check` command; otherwise use the `check` workflow before calling any task finished.
 
 ## Git
 
 - Commit completed work freely. Messages are plain descriptive one-liners — no `feat:`/`fix:` prefixes.
-- **Pushing**: in an autonomous permission mode (auto / bypassPermissions) push completed, committed work without asking; in any other mode, never push unprompted. Never force-push. Never rewrite history on shared branches. A push is never a deploy approval — production guardrails below still apply.
+- **Pushing**: push only when I've explicitly asked in the current conversation and after checking the project's documented push effects. If a push can deploy production, get separate production confirmation immediately before pushing. Never force-push or rewrite shared history.
 - Never use `--no-verify` or skip hooks. If a hook fails, fix the cause, not the messenger.
 
 ## Guardrails — always ask first
 
 Never do these without my explicit confirmation *in the current conversation*:
 
-- **Production deploys** on any platform, and app-store submissions.
+- **Production deploys** on any platform, app-store submissions, and pushes to branches that trigger production deploys.
 - **DB migrations or destructive queries** (DROP / DELETE / TRUNCATE / schema changes) against any non-local database.
 - **Anything that costs real money or has external side effects**: paid APIs in live mode, real emails/SMS/push, creating cloud resources, anything touching Stripe.
 - **Deleting or overwriting anything not recoverable from git.**
@@ -41,7 +41,7 @@ When a repo doesn't dictate otherwise:
 - **Backend**: Hono on Bun. SQLite for small things. PocketBase when batteries-included auth/CRUD/realtime is worth it.
 - **Mobile**: Expo + React Native, NativeWind.
 - **Python** (rare): uv only — no pip, no poetry.
-- New projects: `/new-project` (modeled on `~/spaghetti/react-starter`).
+- New projects: use the `new-project` workflow (modeled on `~/spaghetti/react-starter`).
 
 ## Code style
 
@@ -53,9 +53,9 @@ When a repo doesn't dictate otherwise:
 
 ## Infra
 
-- **Coolify on my own VPS** is the default home for backends and static sites (`/deploy-coolify`). Vercel/Cloudflare when it genuinely saves time. Mobile ships via EAS.
-- Deploys go through `/ship`. Production always requires my confirmation — see Guardrails.
+- **Coolify on my own VPS** is the default home for backends and static sites (use the `deploy-coolify` workflow). Vercel/Cloudflare when it genuinely saves time. Mobile ships via EAS.
+- Deploys go through the `ship` workflow. Production always requires my confirmation — see Guardrails.
 
 ## Docs lookups
 
-Use Context7 MCP (`resolve-library-id` → `query-docs`) for library/framework/API questions instead of trusting training data.
+For version-sensitive library/framework/API questions, use Context7 MCP (`resolve-library-id` → `query-docs`) when available. If it is unavailable or insufficient, use primary official documentation instead of trusting training data.

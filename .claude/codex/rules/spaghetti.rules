@@ -1,0 +1,77 @@
+prefix_rule(
+    pattern = ["git", "push"],
+    decision = "prompt",
+    justification = "Confirm the destination and documented deploy effects before pushing.",
+)
+
+prefix_rule(
+    pattern = ["git", "push", ["--force", "--force-with-lease", "-f"]],
+    decision = "forbidden",
+    justification = "Force-pushing is forbidden; create a new commit instead.",
+)
+
+prefix_rule(
+    pattern = ["git", "commit", ["--no-verify", "-n"]],
+    decision = "forbidden",
+    justification = "Skipping hooks is forbidden; fix the failing hook instead.",
+)
+
+prefix_rule(
+    pattern = ["git", "reset", "--hard"],
+    decision = "prompt",
+    justification = "A hard reset can destroy uncommitted work.",
+)
+
+prefix_rule(
+    pattern = ["git", "clean"],
+    decision = "prompt",
+    justification = "Git clean can permanently delete untracked files.",
+)
+
+prefix_rule(
+    pattern = ["rm", ["-rf", "-fr"]],
+    decision = "prompt",
+    justification = "Recursive forced deletion requires explicit confirmation.",
+)
+
+prefix_rule(
+    pattern = ["vercel", ["--prod", "deploy"]],
+    decision = "prompt",
+    justification = "Verify whether this targets production before deploying.",
+)
+
+prefix_rule(
+    pattern = ["wrangler", "deploy"],
+    decision = "prompt",
+    justification = "Verify the Cloudflare environment and routes before deploying.",
+)
+
+prefix_rule(
+    pattern = ["eas", ["submit", "build"]],
+    decision = "prompt",
+    justification = "EAS submissions and auto-submit builds require explicit confirmation.",
+)
+
+prefix_rule(
+    pattern = ["stripe"],
+    decision = "prompt",
+    justification = "Stripe access is always behind the external-side-effect confirmation boundary.",
+)
+
+prefix_rule(
+    pattern = ["bunx", "prisma", "migrate", "deploy"],
+    decision = "prompt",
+    justification = "Confirm the database target before applying migrations.",
+)
+
+prefix_rule(
+    pattern = ["bunx", "drizzle-kit", "push"],
+    decision = "prompt",
+    justification = "Confirm the database target before changing its schema.",
+)
+
+prefix_rule(
+    pattern = ["alembic", "upgrade"],
+    decision = "prompt",
+    justification = "Confirm the database target before applying migrations.",
+)

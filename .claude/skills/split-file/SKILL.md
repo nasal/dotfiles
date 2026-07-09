@@ -24,5 +24,5 @@ Keep extractions in the same feature folder unless genuinely shared — feature 
 
 - Move code verbatim first; refactor in a separate commit so review stays tractable.
 - Extracted units get colocated tests when they contain logic worth testing in isolation.
-- Run `/check` after the split.
+- Run the `check` workflow after the split.
 - If the repo tracks oversized files (e.g. `docs/large-source-files.md` in usbc-web), keep that list in sync: remove entries you fixed, add an entry with a split plan when forced to leave a file oversized.

@@ -1,0 +1,77 @@
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+personality = "pragmatic"
+
+[sandbox_workspace_write]
+network_access = false
+
+[features]
+ghost_commit = false
+unified_exec = true
+skills = true
+shell_snapshot = true
+hooks = true
+
+[agents]
+max_threads = 3
+max_depth = 1
+
+[mcp_servers.context7]
+url = "https://mcp.context7.com/mcp"
+
+[projects."/home/nasal/spaghetti"]
+trust_level = "trusted"
+
+[projects."/home/nasal/usbc"]
+trust_level = "trusted"
+
+[projects."/home/nasal/spaghetti/listapp"]
+trust_level = "trusted"
+
+[projects."/home/nasal/spaghetti/codetimer"]
+trust_level = "trusted"
+
+[projects."/home/nasal/usbc/usbc-web"]
+trust_level = "trusted"
+
+[projects."/home/nasal"]
+trust_level = "trusted"
+
+[projects."/home/nasal/spaghetti/invoice/invoice-web"]
+trust_level = "trusted"
+
+[projects."/home/nasal/dotfiles"]
+trust_level = "trusted"
+
+[projects."/home/nasal/usbc/mas-synapse-sso-demo"]
+trust_level = "trusted"
+
+[projects."/home/nasal/spaghetti/biodom/biodom-web"]
+trust_level = "trusted"
+
+[projects."/home/nasal/spaghetti/scaptcha"]
+trust_level = "trusted"
+
+[projects."/home/nasal/spaghetti/biodom"]
+trust_level = "trusted"
+
+[projects."/home/nasal/spaghetti/eubc-native"]
+trust_level = "trusted"
+
+[projects."/home/nasal/spaghetti/blupa"]
+trust_level = "trusted"
+
+[projects."/home/nasal/spaghetti/eubc"]
+trust_level = "trusted"
+
+[projects."/home/nasal/spaghetti/waka-rn"]
+trust_level = "trusted"
+
+[tui.model_availability_nux]
+"gpt-5.5" = 4
+"gpt-5.6-sol" = 1
+
+[hooks.state]
+
+[hooks.state."/home/nasal/.codex/hooks.json:pre_tool_use:0:0"]
+trusted_hash = "sha256:a9a811db63830159c42a6e259ad5ab55065025c21809efb6a2ebff37449831d5"

@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun ~/dotfiles/.claude/hooks/guardrails.ts",
+            "timeout": 5,
+            "statusMessage": "Checking hard guardrails"
+          }
+        ]
+      }
+    ]
+  }
+}

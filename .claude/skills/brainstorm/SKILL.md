@@ -1,15 +1,15 @@
 ---
 name: brainstorm
-description: Turn a fuzzy idea into a concrete spec by asking one question at a time, then save docs/spec.md. Use at the very start of a feature or project, before any code. Feeds /plan.
+description: Turn a fuzzy idea into a concrete spec by asking one question at a time, then save docs/spec.md. Use at the very start of a feature or project, before any code. Feeds the plan workflow.
 ---
 
-# /brainstorm — idea → spec
+# Brainstorm — idea → spec
 
 The user has an idea; your job is to sharpen it into something buildable. Interview first, write second.
 
 ## Interview
 
-- **One question at a time.** Short, concrete, answerable. Prefer AskUserQuestion with real options over open-ended prompts.
+- **One question at a time.** Short, concrete, answerable. Prefer the platform's structured question tool with real options when available.
 - Build each question on the previous answer. Dig into: who uses it, the core flow (the ONE thing it must do well), data model, edge cases, what's explicitly OUT of scope, and any hard constraints (platform, deadline, existing systems).
 - Challenge scope creep as it happens — "does v1 really need accounts?" is a great question.
 - Stop when you can describe the MVP without hand-waving. Usually 5–10 questions. Don't interrogate past the point of usefulness.
@@ -26,4 +26,4 @@ Write `docs/spec.md`:
 6. **Stack & constraints** — per global defaults unless the answers said otherwise.
 7. **Open questions** — anything deliberately deferred.
 
-Then summarize the spec in a few lines and point at `/plan` as the next step. Don't start planning or coding — brainstorm ends at the spec.
+Then summarize the spec in a few lines and point at the `plan` workflow as the next step. Don't start planning or coding — brainstorm ends at the spec.

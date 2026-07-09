@@ -3,7 +3,7 @@ name: new-project
 description: Scaffold a new Spaghetti Code project — React web app (from ~/spaghetti/react-starter), Expo mobile app, or Hono/Bun backend — with tests, lint, thin AGENTS.md, and git initialized. Use when starting any new project or prototype.
 ---
 
-# /new-project — scaffolder
+# New Project — scaffolder
 
 Args: project name (kebab-case), and optionally type + backend. If missing, ask ONE question with the choices below, then proceed.
 
@@ -16,14 +16,14 @@ Target directory: `~/spaghetti/<name>` unless told otherwise.
 
 Blueprint is `~/spaghetti/react-starter` — copy it, don't recreate it:
 
-1. `cp -r ~/spaghetti/react-starter ~/spaghetti/<name>` then `rm -rf .git node_modules`. If the local copy doesn't exist (new machine), `git clone --depth 1 git@github.com:spaghettisi/react-starter.git <name>` instead.
+1. Require `~/spaghetti/<name>` not to exist; never merge a scaffold into an existing directory. Run `cp -a ~/spaghetti/react-starter ~/spaghetti/<name>`, then remove only `~/spaghetti/<name>/.git` and `~/spaghetti/<name>/node_modules`. If the local copy doesn't exist, run `git clone --depth 1 git@github.com:spaghettisi/react-starter.git ~/spaghetti/<name>` instead.
 2. Rename: `package.json` name, `index.html` title, README heading.
 3. **Backend choice**:
    - `none` → delete `pocketbase/` dir.
    - `pocketbase` → keep `pocketbase/`, document setup in README (Stripe/captcha hooks are configured via server-side `STRIPE_*` env vars — see `.env.example`).
    - `hono` → delete `pocketbase/`, scaffold `server/` per the "Hono API" section below (same repo, separate package).
 4. Replace the starter's `AGENTS.md` with a thin project one from `~/dotfiles/.claude/templates/AGENTS.project.md` (fill in name, stack, commands, deploy target; carry over the starter's still-relevant Gotchas). Keep the `CLAUDE.md` symlink.
-5. `bun install`, then run `/check` — the starter ships with Vitest + RTL wired, so the suite must be green out of the box.
+5. `bun install`, then run the `check` workflow — the starter ships with Vitest + RTL wired, so the suite must be green out of the box.
 6. `git init -b main`, initial commit.
 
 ## Expo mobile app
@@ -34,7 +34,7 @@ No starter repo yet — scaffold fresh, apply house conventions. Load the `react
 2. Add NativeWind (Tailwind for RN) — check Context7 for current setup steps.
 3. House conventions (from eubc-native): every screen respects safe-area insets; light/dark handled from day one (`useColorScheme`); haptics on meaningful interactions (expo-haptics); MMKV for local storage when persistence is needed; reuse components across screens — build a small `components/ui/` kit early instead of one-off styling.
 4. Tests: vitest is not the RN norm — use `jest-expo` preset + React Native Testing Library, one smoke test.
-5. oxlint + oxfmt, scripts, thin AGENTS.md + CLAUDE.md symlink, git init, `/check`.
+5. oxlint + oxfmt, scripts, thin AGENTS.md + CLAUDE.md symlink, git init, then the `check` workflow.
 
 ## Hono API (standalone `api` type, or `server/` inside a react project)
 
@@ -42,7 +42,7 @@ No starter repo yet — scaffold fresh, apply house conventions. Load the `react
 2. Structure: `src/index.ts` (Bun.serve + Hono app), `src/routes/`, `src/db.ts` (`bun:sqlite`, WAL mode), `src/env.ts` (zod-validated, fail fast at startup).
 3. `bun test` with one real test hitting the app via `app.request()`.
 4. `Dockerfile` (oven/bun slim, non-root) + healthcheck route `GET /health` — Coolify-ready.
-5. Thin AGENTS.md + CLAUDE.md symlink, git init, `/check`.
+5. Thin AGENTS.md + CLAUDE.md symlink, git init, then the `check` workflow.
 
 ## Always
 

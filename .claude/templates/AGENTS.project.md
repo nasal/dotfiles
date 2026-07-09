@@ -2,7 +2,7 @@
 
 <One or two sentences: what this is and who it's for.>
 
-Global rules apply (~/.claude/CLAUDE.md). Only project-specific facts live here — if a rule is generic, it belongs in the global file, not in this one.
+Global user rules apply. Only project-specific facts live here — if a rule is generic, it belongs in the global file, not in this one.
 
 ## Stack
 
@@ -12,14 +12,18 @@ Global rules apply (~/.claude/CLAUDE.md). Only project-specific facts live here 
 
 - dev: `bun run dev`
 - test: `bun run test`
-- check: typecheck + lint + test via `/check`
+- check: `bun run check` (typecheck + lint + test + build as configured)
 
 ## Deploy
 
-<Filled in by /ship after the first successful deploy:>
+<Filled in by the ship workflow after the first successful deploy:>
 - Target: <coolify | vercel | cloudflare | eas>
+- Environment: <preview | staging | production>
 - App: <coolify app uuid / vercel project / etc.>
 - URL: <https://...>
+- Deploy branch: <branch name>
+- Push effects: <none | preview deploy | production deploy>
+- Deploy command: <command/API trigger, or "push only">
 - Env vars: <names only, never values>
 
 ## Gotchas

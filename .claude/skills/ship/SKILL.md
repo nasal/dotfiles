@@ -1,29 +1,31 @@
 ---
 name: ship
-description: Test → commit → deploy pipeline. Runs the /check gate, commits work, then deploys to the project's target (Coolify, Vercel, Cloudflare, EAS). Production deploys always stop for explicit confirmation. Use when asked to ship, release, or deploy.
+description: Test → commit → deploy pipeline. Resolves push effects, runs the full check gate, commits work, then deploys to the project's target. Production deploys always stop for explicit confirmation. Use when asked to ship, release, or deploy.
 ---
 
-# /ship — test, commit, deploy
+# Ship — test, commit, deploy
 
 ## Pipeline
 
-1. **Gate**: run `/check`. Red → fix or stop. Never ship red.
-   For production-bound or risky changes, also spawn the `code-reviewer` agent on the diff — and the `qa-tester` agent when the change touches user-facing flows — and resolve anything severe before continuing.
+1. **Resolve the deployment contract before any push**:
+   1. Read the project's `AGENTS.md` Deploy section for target, environment, deploy branch, push effects, and deploy command.
+   2. Fall back to config files: `Dockerfile`/Coolify → `deploy-coolify`; `vercel.json`/`.vercel/` → Vercel; `wrangler.toml` → Cloudflare; `eas.json` → EAS.
+   3. If the environment or push effects are unknown, ask. Never assume a push is deployment-free.
 
-2. **Commit**: if the working tree is dirty, commit with a plain descriptive one-liner. Don't push unless the deploy target requires it (git-based deploys) — and say so when you do.
+2. **Gate**: run the `check` workflow. Red → fix or stop. Never ship red.
+   For production-bound or risky changes, delegate an adversarial diff review — and exploratory QA when user-facing flows changed — when suitable subagents are available. Resolve severe findings before continuing.
 
-3. **Resolve the deploy target**, in order:
-   1. The project's `AGENTS.md` "Deploy" section (authoritative — write one after the first successful deploy so next time is zero-discovery).
-   2. Config files: `Dockerfile`/Coolify → `/deploy-coolify`; `vercel.json`/`.vercel/` → Vercel; `wrangler.toml` → Cloudflare; `eas.json` → EAS.
-   3. Neither → ask. Default preference is Coolify.
+3. **Commit**: if the working tree is dirty, commit with a plain descriptive one-liner.
 
-4. **Deploy**:
-   - **Preview/staging**: go ahead autonomously.
-   - **PRODUCTION**: STOP. State exactly what will deploy where ("deploy <commit> of <project> to <target> production") and wait for explicit yes in this conversation. A general "ship it" earlier in the session does not carry over — ask at the moment of the prod deploy. This includes `vercel --prod`, Coolify production apps, `wrangler deploy` to prod routes, `eas submit`.
+4. **Approval boundary**:
+   - **Preview/staging**: push or deploy autonomously only when the request already authorized shipping and the documented push effects are non-production.
+   - **PRODUCTION**: STOP. State exactly what will happen ("push/deploy <commit> of <project> to <target> production") and wait for explicit yes immediately before the first production-triggering action. A general "ship it" earlier in the session does not carry over. This includes a push to an auto-deploy branch, `vercel --prod`, Coolify production apps, `wrangler deploy` to production routes, and `eas submit`.
 
-5. **Verify the deploy**: check deployment status/logs; hit the health/root URL. If it's broken, say so immediately and offer rollback — don't quietly retry.
+5. **Push/deploy**: perform only the action required by the recorded deployment contract. Never push merely because a commit exists.
 
-6. **Record**: if the project's AGENTS.md has no Deploy section yet, add one (target, app identifier/uuid, URL, any gotchas).
+6. **Verify the deploy**: check deployment status/logs; hit the health/root URL. If it's broken, say so immediately and offer rollback — don't quietly retry.
+
+7. **Record**: keep the project's Deploy section current, including environment, deploy branch, push effects, deploy command, target identifier, URL, and gotchas.
 
 ## Never
 

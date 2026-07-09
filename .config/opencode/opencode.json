@@ -77,8 +77,8 @@
       ],
     },
     "context7": {
-      "type": "local",
-      "command": ["npx", "-y", "@upstash/context7-mcp", "--api-key", "ctx7sk-cf9069ac-066b-4e81-bc87-2ddceb9fe08e"],
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp",
       "enabled": true
     },
     "chrome-devtools": {

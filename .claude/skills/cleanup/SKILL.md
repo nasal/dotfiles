@@ -1,9 +1,9 @@
 ---
 name: cleanup
-description: Repo housekeeping — dead code, unused deps and exports, stale config comments, leftover console.logs — verified with /check and committed in reviewable chunks. Use for "clean up", "tidy the repo", or after big migrations.
+description: Repo housekeeping — dead code, unused deps and exports, stale config comments, leftover console.logs — verified with the full check workflow and committed in reviewable chunks. Use for "clean up", "tidy the repo", or after big migrations.
 ---
 
-# /cleanup
+# Cleanup
 
 Housekeeping only — zero behavior changes. If removing something would change behavior, it's not cleanup; flag it instead.
 
@@ -18,7 +18,7 @@ Housekeeping only — zero behavior changes. If removing something would change 
 ## Rules
 
 - One commit per category (`remove unused exports`, `drop stale biome-ignore comments`) — reviewable chunks, easy to revert.
-- `/check` after every commit-sized chunk, full green before moving on.
+- Run the `check` workflow after every commit-sized chunk; get fully green before moving on.
 - Never remove comments that explain *why* something is the way it is — only provably stale ones.
-- Never touch code that works but looks ugly — that's `/simplify` or a refactor task, not cleanup.
+- Never touch code that works but looks ugly — that's a simplification or refactor task, not cleanup.
 - Finish with a short report: what was removed, what was suspicious but left alone (and why).
